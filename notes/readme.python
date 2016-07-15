@@ -1,0 +1,31 @@
+# boolean:
+  0, '', [], (), {}, and None are false in a boolean context,  
+  everything else is true. 
+  """ example:
+     >>> a = ''   #a is false
+     >>> [a]      #true because this is not a empty list
+     >>> ' '      #true because that is white space character
+  """
+  
+##################################
+# and-or tricks
+##################################  
+# and tricks
+>>> 'a' and 'b' and 'c'    
+'c'  #if all values are true, returns the last value
+>>> '' and 'b'
+''   #if any value is false, returns the first false value
+>>> 'a' and 0 and '' and 'c'
+0    #if any value is false, returns the first false value
+
+# or tricks
+>>> 'a' or 'b' or 'c'
+'a'  #if any value is true, returns this value immediately
+>>> '' or [] or {} 
+{}   #if all values are false, returns the last value
+
+# and-or tricks 
+>>> 1 and 'a' or 'b'
+'a'
+>>> 0 and 'c' or 'd'
+'d'
