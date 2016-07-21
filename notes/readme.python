@@ -3,7 +3,7 @@
   everything else is true. 
   """ example:
      >>> a = ''   #a is false
-     >>> [a]      #true because this is not a empty list
+     >>> [a]      #true even though a is empty but [a] is not a empty list
      >>> ' '      #true because that is white space character
   """
   
@@ -25,7 +25,24 @@
 {}   #if all values are false, returns the last value
 
 # and-or tricks 
+# if true of the first two values with "and" operator, then 
+# returns the second value. otherwise, returns the last value 
 >>> 1 and 'a' or 'b'
 'a'
 >>> 0 and 'c' or 'd'
 'd'
+>>> 1 and '' or 'last'
+'last'
+>>> (1 and [''] or 'b')[0]  #[0] means the first item in the list  
+''                          #[''] is true since it is not a empty list 
+
+
+######################################
+# run the python script
+######################################
+# run as module
+>>> from plura16 import plural
+>>> plural('goat')
+goats
+# run as standalone script by __name__
+$ python plural.py

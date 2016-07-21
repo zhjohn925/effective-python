@@ -1,0 +1,123 @@
+#Built-in functions (some examples in below)
+#Python's built-in functions are grouped into a special module
+#  called __builtin__
+>>> from apihelper import info
+>>> import __builtin__
+>>> info(__builtin__, 20)
+  
+
+
+####################################
+#The type function
+####################################
+>>>type(1)             #<type 'int'>
+>>>li = []
+>>>type(li)            #<type 'list'>
+>>>import odbchelper
+>>>type(odbchelper)    #<type 'module'>
+>>>import types
+>>>type(odbchelper) == types.ModuleType   #True
+
+####################################
+#The str function
+# -coerces data into a string.
+####################################
+>>>str(1)     #'1'
+>>>str(None)  #'None'
+>>>horsemen = ['war', 'pestilence', 'famine']
+>>>horsemen           #['war', 'pestilence', 'famine']
+>>>horsemen.append('powerbuilder')
+>>str(horsemen)
+   # "['war', 'pestilence', 'famine', 'powerbuilder']"
+>>>import plura16
+>>str(plura16)       #"<module 'plura16' from 'plura16.py'>"
+>>> from plura16 import plural
+>>> str(plural)      #'<function plural at 0x10d13a140>'
+
+####################################
+#The dir function
+# -returns a list of the attributes 
+#  and methods of any object
+####################################
+>>>li = []
+>>>dir(li)   #['append', 'count', 'extend', 'index', 
+             #'insert', 'pop', 'remove', 'reverse', 'sort']
+>>>d = {}
+>>>dir(d)    #['clear', 'copy', 'get', 'has_key', 'items', 
+             #'keys', 'setdefault', 'update', 'values']
+>>>import plura16
+>>>dir(plura16)  #['__builtins__', '__doc__', '__file__', 
+                 #'__name__', '__package__', 'plural', 
+                 #'re', 'rules']
+
+####################################
+#The callable function  
+# -takes any object and returns True
+#  if the object can be called.        
+####################################
+#Callable objects include functions, class methods, even 
+#  classes themselves.  
+>>>import string
+>>> string.punctuation     #  '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+>>> string.join            #  <function join at 00C55A7C>
+>>> callable(string.punctuation)  #False
+>>> callable(string.join)         #True
+>>> print string.join.__doc__     #print the __doc__ in string.join
+
+####################################
+#The getattr function
+# -get a reference to a function
+####################################
+#getattr with functions
+>>>li = ["Larry", "Curly"]
+>>>li.pop   #this gets a reference to pop method of the list
+            #but is not calling the pop method.
+            #li.pop() will call the method  
+<built-in method pop of list object at 010DF884>
+>>>getattr(li, "pop")   #same as above
+<built-in method pop of list object at 010DF884> 
+>>>getattr(li, "append")("Moe")  #append "Moe" to the list
+>>>li
+["Larry", "Curly", "Moe"]
+>>> getattr({}, "clear")     
+<built-in method clear of dictionary object at 00F113D4>
+>>> getattr((), "pop")        #get error because tuple has no
+                              #  pop method
+AttributeError: 'tuple' object has no attribute 'pop'
+
+#getattr with modules
+>>>import plura16
+>>> plura16.plural
+<function plural at 0x101344140>
+>>> object = plura16
+>>> method = "plural"
+>>> getattr(object, method)   #a reference to plural function in plura16
+<function plural at 0x101344140>
+>>> import types
+>>> type(getattr(object, method))==types.FunctionType
+True
+>>> callable(getattr(object,method))
+True
+>>> getattr(object, method)("cat")
+'cats'
+
+#getattr to create a dispatcher
+#   assume there are three methods to define output format
+//  in statsout module:
+//  output_text(), output_html(), output_xml() 
+>>>import statsout
+>>>def output(data, format=="text")
+      output_function = getattr(statsout, "output_%s" % format)
+      return output_function(data)
+#the above can causes exception if format is not any one of 
+#   text, html, xml.  below fix by using 
+#   getattr with default values 
+#   if the method set by the second argument is not found, take
+#   the default value(the third argument)     
+>>> def output(data, format="text"):
+      output_function = getattr(statsout, "output_%s" % format, statsout.output_text)
+      return output_function(data)
+
+
+
+
