@@ -11,4 +11,25 @@ Despite the differences between modules, packages and libraries, you can import 
    Packages, when viewed as a directory, can contain sub-packages and other modules. 
    
 3. Library is a term that's used interchangeably with imported packages. But in general practice, it refers to a collection of packages.
+
+---------------------------------------------------------------------
+    Popular packages in Python
+---------------------------------------------------------------------
+https://www.netsolutions.com/insights/top-10-python-frameworks-for-web-development-in-2019/
+
+---------------------------------------------------------------------
+    Popular Python packages for web development
+---------------------------------------------------------------------
+https://www.netsolutions.com/insights/top-10-python-frameworks-for-web-development-in-2019/
+
+---------------------------------------------------------------------
+    ML and AI libraries in Python
+---------------------------------------------------------------------
+https://towardsdatascience.com/best-python-libraries-for-machine-learning-and-deep-learning-b0bd40c7e8c
+
+---------------------------------------------------------------------
+    Data Science libraries in Python
+---------------------------------------------------------------------
+https://www.dataquest.io/blog/15-python-libraries-for-data-science/
+
  
